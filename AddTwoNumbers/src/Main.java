@@ -1,20 +1,33 @@
 public class Main {
     public static void main(String[] args) {
 
-        // Criando uma lista encadeada com três nós
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
+        // TESTE USANDO DUAS LISTAS DE LISTNODE
 
-        // Estabelecendo as conexões entre os nós
-        node1.next = node2;
-        node2.next = node3;
+        // instanciando o objeto "solution" - solução - para usar o método addTwoNumbers
+        Solution s1 = new Solution();
 
-        // Percorrendo e imprimindo os valores da lista encadeada
-        ListNode current = node1;
-        while (current != null) {
-            System.out.println(current.val);
-            current = current.next;
+        // Criando a primeira lista encadeada l1 = [9,9,9,9,9,9,9]
+        ListNode l1 = new ListNode(9);
+        l1.next = new ListNode(9);
+        l1.next.next = new ListNode(9);
+        l1.next.next.next = new ListNode(9);
+        l1.next.next.next.next = new ListNode(9);
+        l1.next.next.next.next.next = new ListNode(9);
+        l1.next.next.next.next.next.next = new ListNode(9);
+
+        // Criando a segunda lista encadeada l2 = [9,9,9,9]
+        ListNode l2 = new ListNode(9);
+        l2.next = new ListNode(9);
+        l2.next.next = new ListNode(9);
+        l2.next.next.next = new ListNode(9);
+
+        // Chamando o método addTwoNumbers para somar as listas encadeadas
+        ListNode resultado = s1.addTwoNumbers(l1, l2);
+
+        // Exibindo o resultado da soma das listas encadeadas
+        while (resultado != null) {
+            System.out.print(resultado.val + " ");
+            resultado = resultado.next;
         }
 
     }
