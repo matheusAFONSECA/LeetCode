@@ -1,57 +1,29 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        // var aux
-        vector<int> result;         // definindo um vetor aux para pegar as posições
-        int sum = 0;                // guarda a soma
-        int verifica = target;      // ajuda a verificar se a resposta foi a certa
-        int i = 0;                  // var de controle do for
-        int j = 0;                  // var de controle do while
+        unordered_map<int, int> numMap; // mapa para armazenar número e índice
 
-        while(j != -1)
-        {
-            // passando pelo vetor
-            for(i; i < nums.size(); i++){
+        for (int i = 0; i < nums.size(); ++i) {
+            int complement = target - nums[i];
 
-                // realizando a soma do valor
-                sum = sum + nums[i];
-                // cout << "soma:" << sum << endl;
-
-                // definindo condição para pegar a posição do vetor
-                if (sum <= target)
-                {
-                    result.push_back(i);    // pegando a posição do vetor
-                    verifica = sum;
-                }
-                
+            // Verifica se o complemento está presente no mapa
+            if (numMap.find(complement) != numMap.end()) {
+                // Retorna os índices cujos números somados são iguais ao target
+                return {numMap[complement], i};
             }
 
-            // verifica se pode sair do while -> caso contrário faz o for novamente, mas com uma posição na frente
-            if (verifica != target)
-            {
-                j++;                // incrementa a posição que o loop for vai começar
-                i = j;              // define a nova posição que o loop for vai ocorrer
-                sum = 0;            // zera a soma
-                result.clear();     // limpa as posições pegas de forma errada
-
-                if (j == nums.size())   // caso não tenha como conseguir o valor alvo
-                {
-                    j = -1;             // sai do loop while
-                    result.clear();     // limpa as posições pegas de forma errada
-                }
-                
-            } else {
-                j = -1;             // sai do loop while
-            }
+            // Adiciona o número atual e seu índice ao mapa
+            numMap[nums[i]] = i;
         }
-        
-        // retornando os vetores
-        return result;
+
+        // Se não houver uma solução, retorna um vetor vazio
+        return {};
     }
 };
 
@@ -106,12 +78,7 @@ int main() {
     for (size_t i = 0; i < resultado.size(); ++i) {
         cout << resultado[i] << " ";
     }
-    cout << endl;
-
-
-
-    // Obtendo o tamanho do vetor usando o método size()
-    cout << "Tamanho do vetor: " << numeros.size() << endl;    
+    cout << endl;   
 
     return 0;
 }
