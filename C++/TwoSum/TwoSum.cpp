@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 int main() {
     // Criando um vetor vazio de inteiros
-    std::vector<int> numeros;
+    vector<int> numeros;
 
     // Adicionando elementos ao vetor usando o método push_back()
     numeros.push_back(10);
@@ -12,18 +14,18 @@ int main() {
     numeros.push_back(40);
 
     // Acessando e alterando elementos usando índices
-    std::cout << "Elemento no índice 2: " << numeros[2] << std::endl;
+    cout << "Elemento no índice 2: " << numeros[2] << std::endl;
     numeros[1] = 25; // Alterando o elemento no índice 1
 
     // Obtendo o tamanho do vetor usando o método size()
-    std::cout << "Tamanho do vetor: " << numeros.size() << std::endl;
+    cout << "Tamanho do vetor: " << numeros.size() << std::endl;
 
     // Percorrendo o vetor usando um loop for
-    std::cout << "Elementos do vetor:" << std::endl;
+    cout << "Elementos do vetor:" << std::endl;
     for (size_t i = 0; i < numeros.size(); ++i) {
-        std::cout << numeros[i] << " ";
+        cout << numeros[i] << " ";
     }
-    std::cout << std::endl;
+    cout << std::endl;
 
     return 0;
 }
