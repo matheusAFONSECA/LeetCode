@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -7,26 +9,53 @@ class Solution {
 public:
     vector< vector<int> > threeSum(vector<int>& nums) {
 
-        vector< vector<int> > resultado;
-        vector<int> v1, v2, v3;
+        // var aux
+        vector< vector<int> > resultado;    // vetor de vetores que guarda o resultado
 
-        v1.push_back(1);
-        v1.push_back(2);
-        v1.push_back(3);
+        int n = nums.size();    // tamanho do vetor
+        int sum;                // soma a cada trinca
+        
+        // Sort na array de entrada
+        sort(nums.begin(), nums.end());
+        
+        // iterando ao longo da array
+        for (int i = 0; i < n - 2; ++i) {
 
-        v2.push_back(4);
-        v2.push_back(5);
-        v2.push_back(6);
+            // evitando duplicatas
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+            
+            // pesquisa em dois pontos
+            int left = i + 1, right = n - 1;
+            while (left < right) {
 
-        v3.push_back(7);
-        v3.push_back(8);
-        v3.push_back(9);
+                // realiza a soma do numero a esquerda, do centro e da direita
+                sum = nums[i] + nums[left] + nums[right];
 
-        resultado.push_back(v1);
-        resultado.push_back(v2);
-        resultado.push_back(v3);
+                if (sum == 0) {     // caso a soma seja '0' -> resultado esperado
 
-        return resultado;
+                    // adiciona o valor da soma na lista de resoltados
+                    resultado.push_back({nums[i], nums[left], nums[right]});
+                    
+                    // Evita duplicatas
+                    while (left < right && nums[left] == nums[left + 1])
+                        left++;
+                    while (left < right && nums[right] == nums[right - 1])
+                        right--;
+                    
+                    left++;     // posição do centro vira esquerda
+                    right--;    // posição da direita continua
+
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+
+        }
+        
+        return resultado;       // retorna a lista de combinações
         
     }
 };
