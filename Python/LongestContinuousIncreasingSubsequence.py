@@ -1,7 +1,21 @@
 class Solution:
     def findLengthOfLCIS(self, nums) -> int:
+
+        max_length = 1  # Comprimento máximo da sequência crescente
+        current_length = 1  # Comprimento atual da sequência crescente
         
-        return int(2)
+        # Percorre os elementos da lista, começando do segundo elemento
+        for i in range(1, len(nums)):
+            # Se o elemento atual for maior que o elemento anterior, a sequência continua
+            if nums[i] > nums[i - 1]:
+                current_length += 1
+                # Atualiza o comprimento máximo, se necessário
+                max_length = max(max_length, current_length)
+            else:
+                # Se não, reinicia o comprimento atual da sequência
+                current_length = 1
+        
+        return max_length
     
 
 def main():         # função principal
