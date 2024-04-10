@@ -1,7 +1,16 @@
 class Solution:
     def increasingTriplet(self, nums) -> bool:
+
+        # Percorre os elementos da lista, começando do segundo elemento
+        for i in range(1, len(nums)):
+            # Se o elemento atual for maior que o elemento anterior, a sequência continua
+            if nums[i] > nums[i - 1]:
+                # Se o próximo elemento for maior que o elemeento atual
+                if nums[i] < nums[i+1]:
+                    return True     # sequência satisfeita - nums[i] < nums[j] < nums[k]
         
-        return True
+        # caso n encontre uma sequência i<j<k
+        return False
     
 
 def main():         # função principal
@@ -28,6 +37,13 @@ def main():         # função principal
     n = [2,1,5,0,4,6]
     print("Output: ", s.increasingTriplet(n))
     print("Expected: True")
+
+    # case 4
+    print("Case 4")
+    print("Input: nums = [20,100,10,12,5,13]")
+    n = [20,100,10,12,5,13]
+    print("Output: ", s.increasingTriplet(n))
+    print("Expected: False")
 
 
 if __name__ == "__main__":
