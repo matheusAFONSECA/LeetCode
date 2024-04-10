@@ -1,17 +1,21 @@
 class Solution:
     def increasingTriplet(self, nums) -> bool:
 
-        # Percorre os elementos da lista, começando do segundo elemento
-        for i in range(1, len(nums) - 1):
-            # Se o elemento atual for maior que o elemento anterior, a sequência continua
-            if nums[i] > nums[i - 1]:
-                # Se o próximo elemento for maior que o elemeento atual
-                if nums[i] < nums[i+1]:
-                    return True     # sequência satisfeita - nums[i] < nums[j] < nums[k]
-        
-        # caso n encontre uma sequência i<j<k
+        first = second = float('inf')
+
+        # Percorre os elementos da lista
+        for num in nums:
+            # Se o número for menor que o primeiro, atualiza o primeiro
+            if num < first:
+                first = num
+            # Se o número estiver entre o primeiro e o segundo, atualiza o segundo
+            elif first < num < second:
+                second = num
+            # Se o número for maior que o segundo, uma sequência foi encontrada
+            elif num > second:
+                return True
+
         return False
-    
 
 def main():         # função principal
 
@@ -45,6 +49,6 @@ def main():         # função principal
     print("Output: ", s.increasingTriplet(n))
     print("Expected: True")
 
-
 if __name__ == "__main__":
     main()
+    
