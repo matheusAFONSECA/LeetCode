@@ -1,21 +1,18 @@
 class Solution:
     def lengthOfLIS(self, nums) -> int:
         
-        max_length = 1  # Comprimento máximo da sequência crescente
-        current_length = 1  # Comprimento atual da sequência crescente
+        dp = [1] * len(nums)  # Inicializa uma lista de comprimento igual a `nums` com todos os elementos como 1
         
-        # Percorre os elementos da lista, começando do segundo elemento
-        for i in range(1, len(nums)):
-            # Se o elemento atual for maior que o elemento anterior, a sequência continua
-            if nums[i] > nums[i - 1]:
-                current_length += 1
-                # Atualiza o comprimento máximo, se necessário
-                max_length = max(max_length, current_length)
-            else:
-                # Se não, reinicia o comprimento atual da sequência
-                current_length = 1
+        # Percorre os elementos da lista
+        for i in range(len(nums)):
+            # Verifica os elementos anteriores a `i`
+            for j in range(i):
+                # Se `nums[i]` for maior que `nums[j]`, atualiza o comprimento da subsequência na posição `i`
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
         
-        return max_length
+        # Retorna o comprimento máximo da subsequência
+        return max(dp)
     
 
 def main():         # função principal
@@ -41,7 +38,7 @@ def main():         # função principal
     print("Input: nums = [7,7,7,7,7,7,7]")
     n = [7,7,7,7,7,7,7]
     print("Output: ", s.lengthOfLIS(n))
-    print("Expected: 3")
+    print("Expected: 1")
 
 
 if __name__ == "__main__":
