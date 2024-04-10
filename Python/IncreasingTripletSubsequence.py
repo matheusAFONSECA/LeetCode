@@ -2,7 +2,7 @@ class Solution:
     def increasingTriplet(self, nums) -> bool:
 
         # Percorre os elementos da lista, começando do segundo elemento
-        for i in range(1, len(nums)):
+        for i in range(1, len(nums) - 1):
             # Se o elemento atual for maior que o elemento anterior, a sequência continua
             if nums[i] > nums[i - 1]:
                 # Se o próximo elemento for maior que o elemeento atual
@@ -43,7 +43,7 @@ def main():         # função principal
     print("Input: nums = [20,100,10,12,5,13]")
     n = [20,100,10,12,5,13]
     print("Output: ", s.increasingTriplet(n))
-    print("Expected: False")
+    print("Expected: True")
 
 
 if __name__ == "__main__":
