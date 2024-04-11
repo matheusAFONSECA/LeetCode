@@ -1,22 +1,16 @@
 class Solution:
     def countQuadruplets(self, nums) -> int:
 
-        # soma dos elmentos
-        soma = int(0)
+        cont = 0            # contador da quantidade de combinações que dão certo
+        n = len(nums)       # quantidade de elmentos
 
-        # contador das combinações
-        cont = int(0)
-
-        # Percorre os elementos da lista, começando do segundo elemento e indo até o ante-penultimo
-        for i in range(1, len(nums)-2):
-            # Se o elemento atual for maior que o elemento anterior, a sequência continua
-            if nums[i] > nums[i - 1]:
-                # Se o elemento atual for menor que o proximo elemento, a sequência continua
-                if nums[i] < nums[i + 1]:
-                    soma = nums[i - 1] + nums[i] + nums[i + 1]
-                    
-                    if soma == nums[i + 2]:
-                         cont = cont + 1
+        # Percorre cada conjunto possível de quatro índices
+        for i in range(n - 3):
+            for j in range(i + 1, n - 2):
+                for k in range(j + 1, n - 1):
+                    for l in range(k + 1, n):
+                        if nums[i] + nums[j] + nums[k] == nums[l]:
+                            cont += 1
 
         return cont
 
