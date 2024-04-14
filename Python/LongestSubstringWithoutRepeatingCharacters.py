@@ -1,9 +1,25 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
 
-        count = 0           # contador para quando as condições são satisfeitas
-
-        return count
+        # Inicializa um conjunto para armazenar os caracteres únicos
+        char_set = set()
+        # Variável para manter o comprimento máximo encontrado
+        max_len = 0
+        # Variável para marcar o início da janela atual
+        start = 0
+        
+        # Itera sobre os caracteres da string
+        for end in range(len(s)):
+            # Se o caractere já está no conjunto, remove os caracteres da janela atual até que ele seja removido
+            while s[end] in char_set:
+                char_set.remove(s[start])
+                start += 1
+            # Adiciona o novo caractere ao conjunto e atualiza o comprimento máximo
+            char_set.add(s[end])
+            max_len = max(max_len, end - start + 1)
+        
+        # Retorna o comprimento máximo encontrado
+        return max_len
     
 
 def main():         # função principal
