@@ -1,12 +1,26 @@
 class Solution:
     def countVowelSubstrings(self, word: str) -> int:
+        vowels = {'a', 'e', 'i', 'o', 'u'}      # vogais do alafabeto
+        count = 0                               # contador inicial
 
+        # passando por todas as letras da palavra dada
+        for i in range(len(word)):
 
-        return 0
-    
+            substring_vowels = set()        # definindo o conjunto(set) de subvogais encontradas na palavra 
+
+            for j in range(i, len(word)):   # analisando a subpalavra com inicio na letra em 'i'
+                if word[j] in vowels:       # verifica se a letra é uma vogal
+
+                    substring_vowels.add(word[j])       # adiciona a letra nas subvogais
+
+                    if len(substring_vowels) == len(vowels):    # verifica se a quantidade é a mesma das vogais
+                        count += 1
+                else:
+                    break
+
+        return count
 
 def main():         # função principal
-
     s = Solution()      # instanciando o objeto
 
     # case 1
@@ -30,7 +44,5 @@ def main():         # função principal
     print("Output: ", s.countVowelSubstrings(n))
     print("Expected: 7")
 
-
 if __name__ == "__main__":
     main()
-    
